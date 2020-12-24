@@ -1,0 +1,32 @@
+<h2>Lista de Productos</h2>
+<br />
+<a class="button is-primary is-small" routerLink="../new-product">Nuevo producto</a>
+<br />
+<br />
+<div class="container">
+  <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+    <thead>
+      <tr>
+        <td>#</td>
+        <td>Nombre</td>
+        <td>Detalle</td>
+        <td>Stock</td>
+        <td>Precio</td>
+        <td>Acciones</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products; let idx = index">
+        <td>{{idx + 1}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.description | truncate : 15 : '***' | uppercase }}</td>
+        <td>{{product.stock}}</td>
+        <td>{{product.price}}</td>
+        <td>
+          <a class="button is-primary is-small mr-1" [routerLink]="['../edit-product', product.id]">Editar</a>
+          <button class="button is-danger is-small" (click)="handleDelete(product.id)">Eliminar</button>          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

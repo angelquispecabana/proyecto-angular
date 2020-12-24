@@ -1,0 +1,92 @@
+<form [formGroup]="userForm" (keydown.enter)="$event.preventDefault()" (ngSubmit)="onSubmit()">
+    <div class="container">
+        <div class="field">
+            <label class="label">Nombre</label>
+            <div class="control">
+                <input 
+                    class="input" 
+                    [class.is-danger]="userForm.controls.name.errors && userForm.controls.name.touched"
+                    type="text" 
+                    formControlName="name"/>
+                <p
+                    class="help is-danger"
+                    *ngIf="userForm.controls.name.errors && userForm.controls.name.touched">
+                    <span *ngIf="userForm.controls.name.errors['required']">
+                        El nombre es requerido
+                    </span>
+                    <span *ngIf="userForm.controls.name.errors['minlength']">
+                        El nombre debe tener al menos 4 caracteres
+                    </span>
+                </p>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+                <input 
+                    class="input" 
+                    [class.is-danger]="userForm.controls.email.errors && userForm.controls.email.touched"
+                    type="email" 
+                    formControlName="email"/>
+                <p
+                    class="help is-danger"
+                    *ngIf="userForm.controls.email.errors && userForm.controls.email.touched">
+                    <span *ngIf="userForm.controls.email.errors['required']">
+                        El Email es requerido
+                    </span>
+                    <span *ngIf="userForm.controls.email.errors['minlength']">
+                        El Email debe tener al menos 4 caracteres
+                    </span>
+                </p>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+                <input 
+                    class="input" 
+                    [class.is-danger]="userForm.controls.password.errors && userForm.controls.password.touched"
+                    [type]="show ? 'text' : 'password'" 
+                    formControlName="password"/>
+                <label class="checkbox">
+                    <input #hideshowPassword type="checkbox" (change)="0" (click)="onShowPassword()"/>
+                    <span *ngIf="!hideshowPassword.checked">Show Password</span>
+                    <span *ngIf="hideshowPassword.checked">Hide Password</span>
+                </label>                
+                <p
+                    class="help is-danger"
+                    *ngIf="userForm.controls.password.errors && userForm.controls.password.touched">
+                    <span *ngIf="userForm.controls.password.errors['required']">
+                        El Password es requerido
+                    </span>
+                    <span *ngIf="userForm.controls.password.errors['minlength']">
+                        El Password debe tener al menos 4 caracteres
+                    </span>
+                </p>
+            </div>
+        </div>
+
+        <div class="field is-grouped">
+            <div class="control">
+                <button
+                    type="submit"
+                    class="button is-link"
+                    [disabled]= "!userForm.valid"
+                >
+                    {{buttonText}}
+                </button>
+            </div>
+            <div class="control">
+                <button 
+                    type="button"
+                    class="button is-link is-light"
+                    (click) = "onCancel()">                    
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>   
+
+</form>

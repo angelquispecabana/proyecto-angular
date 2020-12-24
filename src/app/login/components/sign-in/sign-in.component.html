@@ -1,0 +1,38 @@
+<div class="container">
+    <h2 class="m-2 has-text-centered">Login</h2>
+    <form class="m-4" #loginForm="ngForm">
+        <div class="field">
+            <input
+                value={email}
+                class="input"
+                type="email"
+                name="email"
+                #email="ngModel"
+                required
+                email
+                [(ngModel)] = "model.email"
+                placeholder="Ingresa tu email"/>
+        </div>
+        <div class="field">
+            <input
+                class="input"
+                value={password}
+                type="password"
+                name="password"
+                #password="ngModel"
+                required
+                minlength="6"
+                maxlength="20"
+                [(ngModel)] = "model.password"
+                placeholder="Ingresa tu contraseña"/>
+        </div>
+        <p class="help is-danger">{{error}}</p>
+        <div class="field">
+            <button 
+                class="button is-info"
+                type="button"
+                (click) = "onClick()"
+                [disabled]="!loginForm.valid">Ingresar</button>
+        </div>
+    </form>
+</div>

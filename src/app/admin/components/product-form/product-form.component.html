@@ -1,0 +1,65 @@
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+        <div class="field">
+            <label class="label">Nombre</label>
+            <div class="control">
+                <input 
+                    class="input" 
+                    [class.is-danger]="productForm.controls.name.errors && productForm.controls.name.touched"
+                    type="text" 
+                    formControlName="name"/>
+                <p
+                    class="help is-danger"
+                    *ngIf="productForm.controls.name.errors && productForm.controls.name.touched">
+                    <span *ngIf="productForm.controls.name.errors['required']">
+                        El nombre es requerido
+                    </span>
+                    <span *ngIf="productForm.controls.name.errors['minlength']">
+                        El nombre debe tener al menos 4 caracteres
+                    </span>
+                </p>
+            </div>
+            
+        </div>
+        <div class="field">
+            <label class="label">Detalle</label>
+            <div class="control">
+                <textarea class="textarea" type="text" formControlName="description"></textarea>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Stock</label>
+            <div class="control">
+                <input class="input" type="number" formControlName="stock"/>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Precio</label>
+            <div class="control">
+                <input class="input" type="number" formControlName="price"/>
+            </div>
+        </div>
+        <br />
+        <div class="field is-grouped">
+            <div class="control">
+                <button
+                    type="submit"
+                    class="button is-link"
+                    [disabled]= "!productForm.valid"
+                >
+                    {{buttonText}}
+                </button>
+            </div>
+            <div class="control">
+                <button 
+                    type="button"
+                    class="button is-link is-light"
+                    (click) = "onCancel()">                    
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>   
+
+</form>

@@ -1,0 +1,7 @@
+<h2>Editar Usuario</h2>
+<app-user-form 
+    *ngIf="user"
+    buttonText="Actualizar" 
+    (saveUser)="onSubmit($event)" 
+    [user]="user">    
+</app-user-form>
